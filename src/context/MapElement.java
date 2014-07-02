@@ -3,14 +3,14 @@ package context;
 public class MapElement {
 	
 	private boolean occupied;
-	private int x, y;
+	private int xPos, yPos;
 	private double probability, length;
 	
-	public MapElement (int x, int y, double length, double probability, boolean occupied) {
-		this.x = x;
-		this.y = y;
-		this.probability = probability;
+	public MapElement (int x, int y, double length, boolean occupied) {
+		xPos = x;
+		yPos = y;
 		this.occupied = occupied;
+		this.length = length;
 		
 	}
 
@@ -18,12 +18,16 @@ public class MapElement {
 		return occupied;
 	}
 
-	public int getX() {
-		return x;
+	public void setOccupied(boolean occupied) {
+		this.occupied = occupied;
 	}
 
-	public int getY() {
-		return y;
+	public int getXPos() {
+		return xPos;
+	}
+
+	public int getYPos() {
+		return yPos;
 	}
 
 	public double getProbability() {

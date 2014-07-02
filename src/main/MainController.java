@@ -27,6 +27,13 @@ public class MainController extends JFrame {
 		this.setMinimumSize(new Dimension(400, 400));
 		this.pack();
 		
+		myMap = new Map(MAPSIZE_X, MAPSIZE_Y, LENGTH);
+		Random r = new Random();
+		int xPos = r.nextInt(MAPSIZE_X);
+		int yPos = r.nextInt(MAPSIZE_Y);
+		double angle = r.nextDouble(90);
+		myThymio = new Thymio(xPos, yPos, angle)
+		
 		//TODO Map erstellen und Thymio aufsetzen
 		
 	}
