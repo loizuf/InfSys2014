@@ -68,7 +68,7 @@ public class ObserverThread extends Thread implements KeyListener {
 		}
 	}
 	
-//	@Override
+	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
@@ -103,7 +103,7 @@ public class ObserverThread extends Thread implements KeyListener {
 		vy += ay;
 	}
 
-//	@Override
+	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
@@ -140,7 +140,7 @@ public class ObserverThread extends Thread implements KeyListener {
 		System.out.println("ax: " + ax + "/" + "ay: " + ay);
 	}
 
-//	@Override
+	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		

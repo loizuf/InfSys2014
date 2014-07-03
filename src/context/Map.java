@@ -9,11 +9,16 @@ public class Map {
 								// used to get a discrete model of the
 								// environment
 
-	private MapElement[][] element; // Array of MapElement representing the
-									// environment
+	private MapElement[][] map; // Array of MapElement representing the, changed
+								// name to map from element
+								// environment
 	private double edgelength; // each element in this maps covers edgelength^2
 								// square units.
-
+	private Random r;
+	private ArrayList<Integer> occupiedElements;
+	private int thymioX;
+	private int thymioY;
+	
 	public static final int N = 20; // number of occupied elements
 
 	public Map(int x, int y, double l) {
@@ -26,22 +31,18 @@ public class Map {
 	}
 
 	private void initMap() {
-		Random r = new Random();
-		element = new MapElement[sizeX][sizeY];
+		r = new Random();
+		map = new MapElement[sizeX][sizeY];
 		for (int row = 0; row < sizeX; row++) {
 			for (int column = 0; column < sizeY; column++) {
-				element[row][column] = new MapElement(row, column, edgelength,
+				map[row][column] = new MapElement(row, column, edgelength,
 						false);
 			}
 		}
-		
-		ArrayList<Integer> occupiedElements = new ArrayList<Integer>();
 
-		for (int num = 0; num < N; num++) {
-			int index = r.nextInt(N);
-//			System.out.println(index);
-			occupiedElements.add(index);
-		}
+		placeOccupieds();
+		
+		placeThymio();
 		/**
 		 * Kleiner Tipp! Random r = new Random(); ArrayList<Integer>
 		 * occupiedElements = new ArrayList<Integer>();
@@ -57,11 +58,65 @@ public class Map {
 
 	}
 
+	private void placeOccupieds() {
+		occupiedElements = new ArrayList<Integer>();
+		int index = 0;
+		for (int num = 0; num < N; num++) {
+			do {
+				index = r.nextInt(sizeX * sizeY);
+			} while (occupiedElements.contains(index));
+			// System.out.println(index);
+			occupiedElements.add(index);
+		}
+
+		for (int i : occupiedElements) {
+			int indexRow = i / sizeY;
+			int indexCol = i % sizeY;
+			map[indexRow][indexCol].setOccupied(true);
+		}
+	}
+
+	private void placeThymio() {
+		int thymioPos;
+		do{
+			thymioPos = r.nextInt(sizeX*sizeY);
+		}while(occupiedElements.contains(thymioPos));
+		thymioX =  thymioPos/ sizeY;
+		thymioY = thymioPos % sizeY;
+		map[thymioX][thymioY].setThymio();
+	}
+
 	public void printMap() {
-		// TODO print each Element (console)
+		String outputString = "";
+		for (int row = 0; row < sizeY; row++) {
+			outputString += "| ";
+			for (int col = 0; col < sizeX; col++) {
+				if (map[row][col].isOccupied()) {
+					outputString += "X | ";
+					// outputString += "X";
+				} else if (map[row][col].hasThymio()) {
+					outputString += "T | ";
+					// outputString+="T;"
+				}else{
+					outputString += "- | ";
+					// outputString+="-;"
+				}
+
+			}
+			outputString += "\n";
+		}
+		System.out.println(outputString);
 	}
 
 	public void followBeam(int x1, int y1, int x2, int y2) {
 		// TODO - nächste Woche
+	}
+
+	public int getThymioX() {
+		return thymioX;
+	}
+
+	public int getThymioY() {
+		return thymioY;
 	}
 }
