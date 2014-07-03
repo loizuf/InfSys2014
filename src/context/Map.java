@@ -18,7 +18,7 @@ public class Map {
 	private ArrayList<Integer> occupiedElements;
 	private int thymioX;
 	private int thymioY;
-	
+
 	public static final int N = 20; // number of occupied elements
 
 	public Map(int x, int y, double l) {
@@ -41,7 +41,7 @@ public class Map {
 		}
 
 		placeOccupieds();
-		
+
 		placeThymio();
 		/**
 		 * Kleiner Tipp! Random r = new Random(); ArrayList<Integer>
@@ -78,10 +78,10 @@ public class Map {
 
 	private void placeThymio() {
 		int thymioPos;
-		do{
-			thymioPos = r.nextInt(sizeX*sizeY);
-		}while(occupiedElements.contains(thymioPos));
-		thymioX =  thymioPos/ sizeY;
+		do {
+			thymioPos = r.nextInt(sizeX * sizeY);
+		} while (occupiedElements.contains(thymioPos));
+		thymioX = thymioPos / sizeY;
 		thymioY = thymioPos % sizeY;
 		map[thymioX][thymioY].setThymio();
 	}
@@ -97,7 +97,9 @@ public class Map {
 				} else if (map[row][col].hasThymio()) {
 					outputString += "T | ";
 					// outputString+="T;"
-				}else{
+				} else if (map[row][col].isHitByBeam()) {
+					outputString += "^ | ";
+				} else {
 					outputString += "- | ";
 					// outputString+="-;"
 				}
@@ -119,4 +121,23 @@ public class Map {
 	public int getThymioY() {
 		return thymioY;
 	}
+
+	public int getSizeX() {
+		return sizeX;
+	}
+
+	public int getSizeY() {
+		return sizeY;
+	}
+
+	public boolean hitByLaserbeam(int thymX, int thymY) {
+//		System.out.println("X: " + thymX+ "Y " + thymY);
+		if(map[thymX][thymY].isOccupied()){
+			return false;
+		}else{
+		map[thymX][thymY].hitByLaserBeam();
+			return true;
+		}
+	}
+
 }
