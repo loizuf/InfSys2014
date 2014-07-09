@@ -29,7 +29,7 @@ public class MainController extends JFrame {
 
 	public void init() {
 		Random r = new Random();
-		double angle = 90.0 * r.nextDouble();
+		double angle = 360.0 * r.nextDouble();
 		
 		myMap = new Map(MAPSIZE_X, MAPSIZE_Y, LENGTH);
 		myThymio = new Thymio(myMap.getThymioX(), myMap.getThymioY(), angle);
