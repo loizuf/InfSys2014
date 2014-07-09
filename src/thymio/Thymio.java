@@ -6,10 +6,15 @@ public class Thymio {
 	private double angle;
 	
 	public Thymio(int x, int y, double angle) {
-		xPos = x;
-		yPos = y;
+		this.xPos = x;
+		this.yPos = y;
 		this.angle = angle;
 	}
 	//TODO Thymio aufsetzen: X Koordinate / Y Koordinate / Orientierung
+	//done
+
+	public double getAngle() {
+		return angle;
+	}
 
 }
