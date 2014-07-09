@@ -51,9 +51,8 @@ public class MapElement {
 		return hitByLaserBeam;
 	}
 
-	public void hitByLaserBeam() {
+	public void setHitByLaserbeam() {
 		hitByLaserBeam = true;
-
 	}
 	// TODO Map Element aufsetzen!
 	/**

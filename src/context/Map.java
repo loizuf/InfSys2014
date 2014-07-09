@@ -41,7 +41,6 @@ public class Map {
 		}
 
 		placeOccupieds();
-
 		placeThymio();
 		/**
 		 * Kleiner Tipp! Random r = new Random(); ArrayList<Integer>
@@ -57,7 +56,10 @@ public class Map {
 		// state to occupied
 
 	}
-
+	
+	/* creates a list containing 20 different numbers within the maps index range(projected 
+	 * to a 1 dimensionional array) and setting the occupied flag accodringly 
+	 * */
 	private void placeOccupieds() {
 		occupiedElements = new ArrayList<Integer>();
 		int index = 0;
@@ -65,7 +67,6 @@ public class Map {
 			do {
 				index = r.nextInt(sizeX * sizeY);
 			} while (occupiedElements.contains(index));
-			// System.out.println(index);
 			occupiedElements.add(index);
 		}
 
@@ -86,6 +87,13 @@ public class Map {
 		map[thymioX][thymioY].setThymio();
 	}
 
+	/* symbols: 
+	 * X: blocked field
+	 * T: Thymio
+	 * ^: field hit by thymios sensor
+	 * -: empty field
+	 * */
+	
 	public void printMap() {
 		String outputString = "";
 		for (int row = 0; row < sizeY; row++) {
@@ -129,13 +137,14 @@ public class Map {
 	public int getSizeY() {
 		return sizeY;
 	}
-
+	/* returns whether the current map
+	 * */
 	public boolean hitByLaserbeam(int thymX, int thymY) {
 //		System.out.println("X: " + thymX+ "Y " + thymY);
 		if(map[thymX][thymY].isOccupied()){
 			return false;
 		}else{
-		map[thymX][thymY].hitByLaserBeam();
+		map[thymX][thymY].setHitByLaserbeam();
 			return true;
 		}
 	}

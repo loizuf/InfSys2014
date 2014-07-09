@@ -12,16 +12,16 @@ public class BresenhamAlgorithm {
 	private int thymX, thymY;
 	private double m, angle;
 
-	public int[][] calculateBresenham(Map map) {
+	
+	public void calculateBresenham(Map map) {
 		thymX = map.getThymioX();
 		thymY = map.getThymioY();
 
 		applyBresenham(map);
 
-		return null;
 	}
-
-	private int applyBresenham(Map map) {
+	/* computing the map-elements to the first hit occupied element */
+	private void applyBresenham(Map map) {
 		double m = Math.sin(Math.toRadians(angle));
 		double d = 0;
 		while (thymX < map.getSizeX() - 1 && thymY < map.getSizeY() - 1) {
@@ -31,13 +31,11 @@ public class BresenhamAlgorithm {
 				thymY++;
 				d--;
 			}
-			System.out.println("x " + thymX + ";y " + thymY + ";d " + d + ";m "
-					+ m);
+			
 			if (!map.hitByLaserbeam(thymX, thymY)) {
 				break;
 			}
 			;
 		}
-		return 0;
 	}
 }
