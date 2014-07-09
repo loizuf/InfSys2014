@@ -5,6 +5,7 @@ import context.Map;
 public class BresenhamAlgorithm {
 
 	public BresenhamAlgorithm(double angle) {
+		System.out.println(angle);
 		this.angle = angle;
 	}
 
@@ -37,11 +38,11 @@ public class BresenhamAlgorithm {
 				}
 			}
 		} else if (angle >= 90 && angle < 180) {
-			while (thymX < map.getSizeX() - 1 && thymY > 0) {
-				thymY++;
+			while (thymX > 0 && thymY < map.getSizeY()-1) {
+				thymX--;
 				d += m;
 				if (d > 0.5) {
-					thymX--;
+					thymY++;
 					d--;
 				}
 
@@ -64,11 +65,11 @@ public class BresenhamAlgorithm {
 				}
 			}
 		} else {
-			while (thymX > 0 && thymY < map.getSizeY() - 1) {
-				thymY--;
+			while (thymX < map.getSizeX()-1 && thymY > 0) {
+				thymX++;
 				d += m;
 				if (d < -0.5) {
-					thymX++;
+					thymY--;
 					d++;
 				}
 
