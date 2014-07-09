@@ -30,10 +30,11 @@ public class MainController extends JFrame {
 	public void init() {
 		Random r = new Random();
 		double angle = 90.0 * r.nextDouble();
-		bresenham = new BresenhamAlgorithm(angle);
+		
 		myMap = new Map(MAPSIZE_X, MAPSIZE_Y, LENGTH);
 		myThymio = new Thymio(myMap.getThymioX(), myMap.getThymioY(), angle);
 		// TODO Thmyio: "Auf die Map setzen (zufällig!) und Orientierung geben"
+		bresenham = new BresenhamAlgorithm(myThymio.getAngle());
 	}
 
 	public void run() {

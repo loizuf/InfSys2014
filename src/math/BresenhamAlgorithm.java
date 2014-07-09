@@ -10,7 +10,7 @@ public class BresenhamAlgorithm {
 	}
 
 	private int thymX, thymY;
-	private double m, angle;
+	private double angle;
 
 	
 	public void calculateBresenham(Map map) {
@@ -35,7 +35,6 @@ public class BresenhamAlgorithm {
 			if (!map.hitByLaserbeam(thymX, thymY)) {
 				break;
 			}
-			;
 		}
 	}
 }
